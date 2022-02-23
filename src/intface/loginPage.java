@@ -4,6 +4,7 @@ package intface;
 import code.DBconnect;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
@@ -12,7 +13,7 @@ public class loginPage extends javax.swing.JFrame {
 
     Connection conn = null;
     PreparedStatement pst = null;
-
+    ResultSet rs = null;
     public loginPage() {
         initComponents();
         conn = DBconnect.connect();
@@ -31,6 +32,7 @@ public class loginPage extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -50,12 +52,17 @@ public class loginPage extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(102, 255, 102));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 51, 51));
         jLabel7.setText("Rantharu Sport Club");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, -1, -1));
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, 30));
 
         jLabel6.setText("www.rantharusportc@gmai.com");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 520, -1, -1));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 570, -1, -1));
+
+        jLabel8.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/kisspng-computer-icons-avatar-user-profile-clip-art-5b1f69f0baab65.9334453515287853927646-removebg-preview.png"))); // NOI18N
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 280, 330));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 590));
 
@@ -91,6 +98,11 @@ public class loginPage extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("need help?");
         jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 10, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -120,18 +132,39 @@ public class loginPage extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String uname;
         String password;
+        String userPpassword = null;
         uname = txtUsername.getText();
         password = pwdPassword.getText();
         
-        if (uname.equals("admin") && password.equals("admin")) {
-            mainBoard mb = new mainBoard();
-            mb.setVisible(true);
-            this.dispose();
-        }else{
-            JOptionPane.showMessageDialog(null, "Invalid Details");
-            txtUsername.setText("");
-            pwdPassword.setText("");
+        
+        
+        try {
+            String sql = "SELECT password FROM userInfo WHERE username = '"+uname+"'";
+            pst = conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+            if(rs.next()) {
+                userPpassword = rs.getString("password");
+                if (userPpassword.equals(password)) {
+                    mainBoard mb = new mainBoard();
+                    mb.setVisible(true);
+                    this.dispose();
+                }else{
+                    JOptionPane.showMessageDialog(null, "Invalid Details");
+                    txtUsername.setText("");
+                    pwdPassword.setText("");
+            }
+  
+            }else{
+                JOptionPane.showMessageDialog(null, "Invalid Username");
+                txtUsername.setText("");
+                pwdPassword.setText("");
+            }
+   
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
         }
+        
+       
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -143,8 +176,12 @@ public class loginPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        JOptionPane.showMessageDialog(null, "You can not access");
+        JOptionPane.showMessageDialog(null, "This feature is under developing");
     }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        JOptionPane.showMessageDialog(null, "This feature is under developing");
+    }//GEN-LAST:event_jLabel4MouseClicked
 
     /**
      * @param args the command line arguments
@@ -191,6 +228,7 @@ public class loginPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField pwdPassword;

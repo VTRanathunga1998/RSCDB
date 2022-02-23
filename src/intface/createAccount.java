@@ -188,14 +188,14 @@ public class createAccount extends javax.swing.JFrame {
         jLabel6.setText("Re-Enter password");
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, -1, -1));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 700, 500));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 700, 500));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/20-203381_sign-up-icon-png-login-and-signup-icon-removebg-preview.png"))); // NOI18N
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 310, 300));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 750));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 780));
 
-        setSize(new java.awt.Dimension(720, 799));
+        setSize(new java.awt.Dimension(721, 828));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -298,6 +298,10 @@ public class createAccount extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, e);
             }
         }
+        
+        loginPage lp = new loginPage();
+        lp.setVisible(true);
+        this.dispose();
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
