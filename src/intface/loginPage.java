@@ -33,6 +33,7 @@ public class loginPage extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -62,7 +63,10 @@ public class loginPage extends javax.swing.JFrame {
 
         jLabel8.setForeground(new java.awt.Color(255, 0, 0));
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/kisspng-computer-icons-avatar-user-profile-clip-art-5b1f69f0baab65.9334453515287853927646-removebg-preview.png"))); // NOI18N
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 280, 330));
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 280, 330));
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/20220228_141950.png"))); // NOI18N
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, 100, 130));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 590));
 
@@ -222,6 +226,7 @@ public class loginPage extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
