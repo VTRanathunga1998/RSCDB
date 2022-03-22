@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 
 public class userForm extends javax.swing.JFrame {
@@ -40,7 +41,7 @@ public class userForm extends javax.swing.JFrame {
                 lblId.setText(String.valueOf(reg_num));
                 txtName.setText(name);
                 txtNic.setText(Nic);
-                txtDob.setText(dob);
+                ((JTextField)txtDob.getDateEditor().getUiComponent()).setText(dob);
                 txtTelephone.setText(telephone);
                 txtAddress.setText(address);
                 
@@ -52,6 +53,7 @@ public class userForm extends javax.swing.JFrame {
 
     }
     
+    @SuppressWarnings("empty-statement")
     public void update(){
         String reg_num;
         String name;
@@ -63,7 +65,7 @@ public class userForm extends javax.swing.JFrame {
         reg_num = lblId.getText();
         name = txtName.getText();
         nic = txtNic.getText();
-        dob = txtDob.getText();
+        dob = ((JTextField)txtDob.getDateEditor().getUiComponent()).getText();
         telephone = txtTelephone.getText();
         address = txtAddress.getText();
         
@@ -80,7 +82,7 @@ public class userForm extends javax.swing.JFrame {
     public void clear(){
         txtName.setText("");
         txtNic.setText("");
-        txtDob.setText("");
+        txtDob.setCalendar(null);
         txtTelephone.setText("");
         txtAddress.setText("");
         lblId.setText("");
@@ -101,7 +103,6 @@ public class userForm extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
         txtNic = new javax.swing.JTextField();
-        txtDob = new javax.swing.JTextField();
         txtTelephone = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -112,6 +113,7 @@ public class userForm extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         lblId = new javax.swing.JLabel();
+        txtDob = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -154,9 +156,6 @@ public class userForm extends javax.swing.JFrame {
 
         txtNic.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jPanel2.add(txtNic, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 130, 580, 30));
-
-        txtDob.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jPanel2.add(txtDob, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 580, 30));
 
         txtTelephone.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jPanel2.add(txtTelephone, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 230, 580, 30));
@@ -220,6 +219,10 @@ public class userForm extends javax.swing.JFrame {
         lblId.setText("XXX");
         jPanel2.add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, 200, 30));
 
+        txtDob.setDateFormatString("yyyy-MM-dd");
+        txtDob.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jPanel2.add(txtDob, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 182, 580, 30));
+
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 790, 600));
 
         setSize(new java.awt.Dimension(803, 712));
@@ -241,7 +244,7 @@ public class userForm extends javax.swing.JFrame {
         
         name = txtName.getText();
         nic = txtNic.getText();
-        dob = txtDob.getText();
+        dob = ((JTextField)txtDob.getDateEditor().getUiComponent()).getText();
         telephone = txtTelephone.getText();
         address = txtAddress.getText();
         
@@ -252,7 +255,7 @@ public class userForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Update Successfully");
             txtName.setText("");
             txtNic.setText("");
-            txtDob.setText("");
+            txtDob.setCalendar(null);
             txtTelephone.setText("");
             txtAddress.setText("");
             
@@ -262,9 +265,19 @@ public class userForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-
-        update();
-        clear();
+        String name = txtName.getText();
+        String nic = txtNic.getText();
+        String dob = ((JTextField)txtDob.getDateEditor().getUiComponent()).getText();;
+        String telephone = txtTelephone.getText();
+        String address = txtAddress.getText();
+        
+        if(name.equals("") || nic.equals("") || dob.equals("") || telephone.equals("") || address.equals("")){
+            JOptionPane.showMessageDialog(null, "The fields can not be left blank ");
+        }else{
+            update();
+            clear();
+        }
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
@@ -319,7 +332,7 @@ public class userForm extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblId;
     private javax.swing.JTextArea txtAddress;
-    private javax.swing.JTextField txtDob;
+    private com.toedter.calendar.JDateChooser txtDob;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtNic;
     private javax.swing.JTextField txtTelephone;
